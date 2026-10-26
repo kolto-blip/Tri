@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Кері тригонометриялық функциялар</title>
+<style>
+:root{--bg:#f6f3ea;--fg:#14213d;--muted:#4a5568;--card:#ffffff;--line:#d9d4c5;--acc:#c2620f;--accbg:#fdeedd;--hero:#14213d;--herofg:#f6f3ea;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101624;--fg:#ece8dc;--muted:#a9b3c5;--card:#1a2236;--line:#2c3650;--acc:#f0a04b;--accbg:#2a2418;--hero:#0b101c;--herofg:#ece8dc}}
+:root[data-theme="dark"]{--bg:#101624;--fg:#ece8dc;--muted:#a9b3c5;--card:#1a2236;--line:#2c3650;--acc:#f0a04b;--accbg:#2a2418;--hero:#0b101c;--herofg:#ece8dc}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Arial,Helvetica,sans-serif;line-height:1.55}
+header{background:var(--hero);color:var(--herofg);padding:56px 20px 48px}
+.w{max-width:880px;margin:0 auto;padding:0 20px}
+header .w{padding:0}
+header p.k{color:#f0a04b;font-weight:700;margin:0 0 12px}
+h1{font-size:clamp(30px,6vw,52px);line-height:1.1;margin:0 0 16px}
+header p{font-size:18px;margin:0;max-width:640px;opacity:.9}
+section{padding:40px 0 8px}
+h2{font-size:28px;margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin:16px 0}
+.def{border-left:5px solid var(--acc)}
+.big{font-size:20px}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left}
+th{background:var(--hero);color:var(--herofg)}
+td{background:var(--card)}
+label{font-weight:700;display:block;margin:12px 0 6px}
+select,input[type=number]{font:inherit;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--fg);width:100%}
+input[type=range]{width:100%;accent-color:var(--acc)}
+.pre{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+button{font:inherit;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+button:hover{border-color:var(--acc)}
+.res{font-size:26px;font-weight:700;color:var(--acc);margin:12px 0 4px;min-height:36px}
+.sub{color:var(--muted);margin:0}
+svg{width:100%;height:auto;display:block;background:var(--card);border:1px solid var(--line);border-radius:14px}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:10px 0}
+summary{cursor:pointer;font-weight:700}
+.ans{margin:10px 0 0;color:var(--acc);font-weight:700}
+.qo{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.qo button.ok{background:#2f9e6b;color:#0b1a12;border-color:#2f9e6b}.qo button.no{background:#d1495b;color:#fff;border-color:#d1495b}.score{font-size:20px;font-weight:700;color:var(--acc)}.nav{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:20px}.nav a{color:#f0a04b;text-decoration:none;font-weight:700}ol.st li{margin:8px 0}
+footer{padding:32px 20px 48px;color:var(--muted);font-size:14px;text-align:center}
+ul{padding-left:22px}
+</style>
+</head>
+<body>
+<header><div class="w">
+<p class="k">Алгебра және анализ бастамалары · 10-сынып · §2.3</p>
+<h1>Арксинус, арккосинус, арктангенс және арккотангенс</h1>
+<p>Тригонометриялық функцияның мәні бойынша бұрыштың өзін қалай табуға болады: анықтамалар, теріс аргументке арналған формулалар, мәндер кестелері, калькулятор және тест.</p>
+<div class="nav"><a href="#why">Идея</a><a href="#how">Қалай табамыз</a><a href="#four">Функциялар</a><a href="#vals">Кестелер</a><a href="#calc">Калькулятор</a><a href="#err">Қателер</a><a href="#use">Қолданылуы</a><a href="#quiz">Тест</a></div>
+</div></header>
+
+<main class="w">
+<section id="why">
+<h2>Кері функциялар не үшін керек</h2>
+<div class="card">
+<p>sin x = 1/2 теңдеуінің шешімі шексіз көп: π/6, 5π/6, π/6 + 2πn және т.б. Функцияның кері функциясы болуы үшін ол бірсарынды болуы керек. Сондықтан синусты [−π/2; π/2] кесіндісінде қарастырады: мұнда ол өседі және −1-ден 1-ге дейінгі барлық мәнді қабылдайды.</p>
+</div>
+<div class="card def big">
+<b>Анықтама.</b> a ∈ [−1; 1] болса, arcsin a – синусы a-ға тең болатын [−π/2; π/2] кесіндісіне тиісті α саны.<br>
+<b>α = arcsin a ⇔ sin α = a және −π/2 ≤ α ≤ π/2</b>
+</div>
+<div class="card">Мысал: arcsin(√3/2) = π/3, себебі sin π/3 = √3/2 және π/3 ∈ [−π/2; π/2]. arcsin(√3/2) = 2π/3 деп жазу қате: екінші шарт орындалмайды.</div>
+</section>
+
+<section id="how">
+<h2>Мәнді табу: үш қадам</h2>
+<div class="card"><ol class="st">
+<li>Өрнектің мағынасы бар-жоғын тексеріңіз: arcsin және arccos үшін a саны [−1; 1] аралығында жатуы керек.</li>
+<li>a теріс болса, төмендегі кестедегі формула арқылы есепті оң аргументке келтіріңіз.</li>
+<li>Қажетті аралықтан бұрышты табыңыз да, екі шартты тексеріңіз: функцияның мәні a-ға тең және бұрыш мәндер облысына тиісті.</li>
+</ol>
+<p>Мысал: arccos(−√3/2) = π − arccos(√3/2) = π − π/6 = 5π/6.</p></div>
+</section>
+
+<section id="four">
+<h2>Төрт функция</h2>
+<div class="tw"><table>
+<tr><th>Функция</th><th>Анықталу облысы</th><th>Мәндер облысы</th><th>Теріс аргумент</th><th>Монотондылығы</th></tr>
+<tr><td>arcsin x</td><td>[−1; 1]</td><td>[−π/2; π/2]</td><td>arcsin(−x) = −arcsin x</td><td>өседі</td></tr>
+<tr><td>arccos x</td><td>[−1; 1]</td><td>[0; π]</td><td>arccos(−x) = π − arccos x</td><td>кемиді</td></tr>
+<tr><td>arctg x</td><td>(−∞; +∞)</td><td>(−π/2; π/2)</td><td>arctg(−x) = −arctg x</td><td>өседі</td></tr>
+<tr><td>arcctg x</td><td>(−∞; +∞)</td><td>(0; π)</td><td>arcctg(−x) = π − arcctg x</td><td>кемиді</td></tr>
+</table></div>
+<div class="card">Тағы бір теңдік: <b>arcsin a + arccos a = π/2</b>. Мысал: arccos(−1/2) = π − π/3 = 2π/3.</div>
+</section>
+
+<section>
+<h2>Мәндер кестелері</h2>
+<div id="vals"></div>
+</section>
+
+<section id="calc">
+<h2>Калькулятор және график</h2>
+<div class="card">
+<label for="fn">Функция</label>
+<select id="fn"><option value="arcsin">arcsin a</option><option value="arccos">arccos a</option><option value="arctg">arctg a</option><option value="arcctg">arcctg a</option></select>
+<label for="num">a аргументі</label>
+<input type="number" id="num" step="0.01" value="0.5">
+<input type="range" id="rng" min="-3" max="3" step="0.01" value="0.5" aria-label="a аргументі">
+<div class="pre" id="pre"></div>
+<div class="res" id="res"></div>
+<p class="sub" id="sub"></p>
+</div>
+<svg id="g" viewBox="0 0 600 360" role="img" aria-label="Таңдалған кері функцияның графигі және белгіленген нүкте"></svg>
+<p class="sub" style="margin-top:8px">Мәндер радианмен берілген; нәтиже кестелік болса, π-дің дәл үлесі көрсетіледі.</p>
+</section>
+
+<section>
+<h2>Өзіңізді тексеріңіз</h2>
+<details><summary>1. arcsin(−1/2)</summary><p class="ans">−π/6</p></details>
+<details><summary>2. arccos(−√2/2)</summary><p class="ans">3π/4</p></details>
+<details><summary>3. arcctg(−√3)</summary><p class="ans">5π/6</p></details>
+<details><summary>4. arccos(π/3) өрнегінің мағынасы бар ма?</summary><p class="ans">Жоқ: π/3 ≈ 1,05 &gt; 1, ал arccos-тың анықталу облысы – [−1; 1].</p></details>
+<details><summary>5. sin(arccos(1/2))</summary><p class="ans">sin(π/3) = √3/2</p></details>
+<details><summary>6. arcsin(sin 2)</summary><p class="ans">π − 2, себебі 2 саны [−π/2; π/2] кесіндісіне тиісті емес, ал π − 2 тиісті және sin(π − 2) = sin 2.</p></details>
+<details><summary>7. sin(2arcsin 0,75)</summary><p class="ans">2 · 0,75 · √(1 − 0,5625) = 3√7/8</p></details>
+<details><summary>8. tg(2arcsin(2/3))</summary><p class="ans">sin α = 2/3, cos α = √5/3, tg α = 2/√5, tg 2α = (4/√5) : (1/5) = 4√5</p></details>
+</section>
+
+<section id="err">
+<h2>Жиі кездесетін қателер</h2>
+<div class="card"><ul>
+<li>Анықтаманың екінші шартын ұмытады: arcsin(√3/2) = 2π/3 қате, дұрысы π/3.</li>
+<li>arccos(−a) = −arccos a деп жазады. Дұрысы: arccos(−a) = π − arccos a.</li>
+<li>arcsin(sin x) = x әрқашан дұрыс деп санайды. Бұл тек x ∈ [−π/2; π/2] болғанда ғана орындалады.</li>
+<li>Радиан керек жерде калькуляторды градус режимінде қолданады.</li>
+</ul></div>
+</section>
+
+<section id="use">
+<h2>Қайда қолданылады</h2>
+<div class="card"><b>Физика.</b> Сыну заңы sin β = sin α / n бойынша сыну бұрышы β = arcsin(sin α / n). Көлбеу жазықтықтың бұрышын да синусы немесе тангенсі бойынша табады.</div>
+<div class="card"><b>Геометрия.</b> Катеттері a және b болатын тікбұрышты үшбұрыштың сүйір бұрышы arctg(a/b) тең; гипотенуза мен катет белгілі болса, arcsin немесе arccos қолданылады.</div>
+</section>
+
+<section id="quiz">
+<h2>Тест</h2>
+<div id="qz"></div>
+<p class="score" id="sc"></p>
+</section>
+</main>
+<footer>Дереккөз: Шыныбеков Ә.Н. т.б., «Алгебра және анализ бастамалары», 10-сынып, §2.3, 64–69 б.</footer>
+
+<script>
+(function(){
+var P=Math.PI;
+var F={arcsin:Math.asin,arccos:Math.acos,arctg:Math.atan,arcctg:function(x){return P/2-Math.atan(x)}};
+var sel=document.getElementById('fn'),num=document.getElementById('num'),rng=document.getElementById('rng'),
+res=document.getElementById('res'),sub=document.getElementById('sub'),pre=document.getElementById('pre'),g=document.getElementById('g');
+var presets={
+ s:[['−1',-1],['−√3/2',-Math.sqrt(3)/2],['−√2/2',-Math.SQRT1_2],['−1/2',-0.5],['0',0],['1/2',0.5],['√2/2',Math.SQRT1_2],['√3/2',Math.sqrt(3)/2],['1',1]],
+ t:[['−√3',-Math.sqrt(3)],['−1',-1],['−√3/3',-Math.sqrt(3)/3],['0',0],['√3/3',Math.sqrt(3)/3],['1',1],['√3',Math.sqrt(3)]]};
+function frac(v){
+ var r=v/P;
+ for(var d=1;d<=12;d++){var n=Math.round(r*d);if(Math.abs(r*d-n)<1e-9){
+  if(n===0)return '0';
+  var s=n<0?'−':'',m=Math.abs(n);
+  return s+(m===1?'π':m+'π')+(d===1?'':'/'+d);}}
+ return null;}
+function fmt(x){return String(+x.toFixed(4)).replace('.',',').replace('-','−');}
+function ok(f,a){return (f==='arcsin'||f==='arccos')?Math.abs(a)<=1+1e-12:true;}
+function buildPre(){
+ pre.innerHTML='';
+ var f=sel.value,list=(f==='arcsin'||f==='arccos')?presets.s:presets.t;
+ list.forEach(function(p){var b=document.createElement('button');b.type='button';b.textContent=p[0];
+  b.onclick=function(){set(p[1]);};pre.appendChild(b);});}
+function set(v){num.value=+v.toFixed(6);rng.value=Math.max(-3,Math.min(3,v));update();}
+function draw(f,a,y,valid){
+ var X=function(x){return 300+x*90},Y=function(y){return 180-y*50},o='';
+ o+='<line x1="0" y1="180" x2="600" y2="180" stroke="currentColor" stroke-opacity=".35"/><line x1="300" y1="0" x2="300" y2="360" stroke="currentColor" stroke-opacity=".35"/>';
+ [[P,'π'],[P/2,'π/2'],[-P/2,'−π/2'],[-P,'−π']].forEach(function(t){
+  o+='<line x1="294" y1="'+Y(t[0])+'" x2="306" y2="'+Y(t[0])+'" stroke="currentColor" stroke-opacity=".5"/><text x="312" y="'+(Y(t[0])+5)+'" font-size="14" fill="currentColor" fill-opacity=".7">'+t[1]+'</text>';});
+ [-2,-1,1,2].forEach(function(t){o+='<text x="'+(X(t)-6)+'" y="198" font-size="13" fill="currentColor" fill-opacity=".7">'+(t<0?'−':'')+Math.abs(t)+'</text>';});
+ var lo=(f==='arcsin'||f==='arccos')?-1:-3,hi=(f==='arcsin'||f==='arccos')?1:3,pts=[];
+ for(var i=0;i<=300;i++){var x=lo+(hi-lo)*i/300;pts.push(X(x).toFixed(1)+','+Y(F[f](x)).toFixed(1));}
+ o+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="var(--acc)" stroke-width="3"/>';
+ if(valid&&Math.abs(a)<=3){o+='<circle cx="'+X(a)+'" cy="'+Y(y)+'" r="7" fill="var(--fg)" stroke="var(--acc)" stroke-width="3"/>';}
+ g.innerHTML=o;}
+function update(){
+ var f=sel.value,a=parseFloat(num.value);
+ if(isNaN(a)){res.textContent='';sub.textContent='Санды енгізіңіз.';draw(f,0,0,false);return;}
+ if(!ok(f,a)){res.textContent='Өрнектің мағынасы жоқ';sub.textContent=f+' үшін аргумент [−1; 1] аралығында болуы керек, ал мұнда a = '+fmt(a)+'.';draw(f,a,0,false);return;}
+ var y=F[f](a),fr=frac(y);
+ res.textContent=f+'('+fmt(a)+') = '+(fr?fr:fmt(y));
+ sub.textContent=(fr?'≈ '+fmt(y)+' рад, ':'')+fmt(y*180/P)+'°';
+ draw(f,a,y,true);}
+sel.onchange=function(){buildPre();update();};
+num.oninput=function(){var v=parseFloat(num.value);if(!isNaN(v))rng.value=Math.max(-3,Math.min(3,v));update();};
+rng.oninput=function(){num.value=rng.value;update();};
+function tbl(title,list,f1,f2,n1,n2){
+ var h='<h3>'+title+'</h3><div class="tw"><table><tr><th>a</th><th>'+n1+'</th><th>'+n2+'</th></tr>';
+ list.forEach(function(p){var a=p[1];h+='<tr><td>'+p[0]+'</td><td>'+(frac(f1(a))||fmt(f1(a)))+'</td><td>'+(frac(f2(a))||fmt(f2(a)))+'</td></tr>';});
+ return h+'</table></div>';}
+document.getElementById('vals').innerHTML=tbl('arcsin және arccos',presets.s,F.arcsin,F.arccos,'arcsin a','arccos a')+tbl('arctg және arcctg',presets.t,F.arctg,F.arcctg,'arctg a','arcctg a');
+var Q=[['arccos(−1/2) =',['2π/3','π/3','−π/3','4π/3'],0],['arcsin(√3/2) =',['2π/3','π/3','π/6','−π/3'],1],['arctg(−1) =',['π/4','3π/4','−π/4','−π/2'],2],['Қай өрнектің мағынасы жоқ?',['arctg 100','arccos(√5 − 2)','arcsin 2','arcctg(−7)'],2],['arcsin(sin 2) =',['2','π − 2','2 − π','−2'],1]];
+var done=0,good=0,sc=document.getElementById('sc'),qz=document.getElementById('qz');
+Q.forEach(function(q,i){var d=document.createElement('div');d.className='card';d.innerHTML='<b>'+(i+1)+'. '+q[0]+'</b><div class="qo"></div>';var o=d.querySelector('.qo');
+ q[1].forEach(function(t,k){var b=document.createElement('button');b.type='button';b.textContent=t;b.onclick=function(){
+  if(o.dataset.d)return;o.dataset.d='1';done++;
+  if(k===q[2]){b.className='ok';good++;}else{b.className='no';o.children[q[2]].className='ok';}
+  if(done===Q.length)sc.textContent='Нәтиже: '+Q.length+' сұрақтың '+good+'-і дұрыс';};o.appendChild(b);});
+ qz.appendChild(d);});
+buildPre();update();
+})();
+</script>
+</body>
+</html>
